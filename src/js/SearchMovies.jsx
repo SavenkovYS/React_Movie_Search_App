@@ -1,31 +1,48 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function SearchMovies() {
 
+    const [query, setQuery] = useState('')
+
+    const [movies, setMovies] = useState([]);
+
     const searchMovies = async (evt) => {
         evt.preventDefault();
-        
-        const query = "Jurassic Park";
 
         const url = `https://api.themoviedb.org/3/search/movie?api_key=0b4525be36888eb7860187eaa00d9e55&language=en-US&query=${query}&page=1&include_adult=false`;
         
-
         try {
-            const res = await fetch(url);
-            const data = await res.json();
-            console.log(data)
+            const res = await fetch(url)
+            const data = await res.json()
+            console.log(data.results)
+            setMovies(data.results)
         } catch(err) {
-            console.log(err);
+            console.log(err)
         }
-        
     }
 
     return (
+        <>
         <form className="form" onSubmit={searchMovies}>
             <label htmlFor="query" className="label">Movie Name</label>
-            <input className="input" type="text" name="query" placeholder="Type in a movie" />
+            <input 
+                className="input" 
+                type="text" 
+                name="query" 
+                placeholder="Type in a movie" 
+                value={query}
+                onChange={(evt) => setQuery(evt.target.value)}
+            />
             <button className="button" type="submit" >Search</button>
         </form>
+        <div className="card-list">
+            {movies.map(movie => (
+                <div className="card">
+                    
+                </div>
+            ))}
+        </div>
+        </>
     )
 }
 
