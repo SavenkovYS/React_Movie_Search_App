@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import MovieCard from './MovieCard.jsx'
+import MovieCard from './MovieCard.js'
 
 function SearchMovies() {
 
@@ -15,7 +15,6 @@ function SearchMovies() {
         try {
             const res = await fetch(url)
             const data = await res.json()
-            console.log(data.results)
             setMovies(data.results)
         } catch(err) {
             console.log(err)

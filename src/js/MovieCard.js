@@ -11,7 +11,7 @@ function MovieCard({movie}) {
             <div className="card__content">
                 <h3 className="card__title">{movie.title}</h3>
                 <p><small>RELEASE DATE: {movie.release_date}</small></p>
-                <p><small>RATING: {movie.vote_avarage}</small></p>
+                <p><small>RATING: {movie.vote_average}</small></p>
                 <p className="card__description">{movie.overview}</p>
             </div>
         </div>
